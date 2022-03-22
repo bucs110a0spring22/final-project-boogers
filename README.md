@@ -9,8 +9,8 @@
 
 << [link to demo presentation slides](#) >>
 
-### Team: << team name >>
-#### << Team Members >>
+### Team: << Boogers >>
+#### << Team Members: John Dambra, Erin Zhao, Rachel Todd >>
 
 ***
 
