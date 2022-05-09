@@ -9,8 +9,8 @@
 
 << [link to demo presentation slides](#) >>
 
-### Team: << Boogers >>
-#### << Team Members: John Dambra, Erin Zhao, Rachel Todd >>
+### Team:  Boogers 
+####  Team Members: John Dambra, Erin Zhao, Rachel Todd
 
 ***
 
