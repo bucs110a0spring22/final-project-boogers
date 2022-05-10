@@ -9,6 +9,7 @@ from src import Button
 class Controller:
   
   def __init__(self, width=400, height=400):
+    '''initializes variables, objects, screen'''
     pygame.init()
     #pygame.display.init()
     
@@ -24,7 +25,7 @@ class Controller:
     pygame.font.init()
 
     self.buttons = pygame.sprite.Group()
-    self.buttons.add(Button.Button(200, 200, "assets/monthly_button.png"))
+    self.buttons.add(Button.Button(200, 200, "assets/monthly.png"))
     print(Button.Button(200,200,"assets/left_arrow.png"))
     print(self.buttons)
     for b in self.buttons:
@@ -53,6 +54,7 @@ class Controller:
   """
   
   def menuloop(self):
+    '''loops the menu code and gives user interaction'''
     while self.state == "MENU_SCREEN":
       #print("menuloop is activitated")
       #print("this is working")

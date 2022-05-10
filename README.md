@@ -1,8 +1,8 @@
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 # CS110 Project Proposal
-# << Project Title >>
+# Planner App
 ## CS 110 Final Project
-### << Semester, Year >>
+### Fall 2022
 ### [Assignment Description](https://docs.google.com/document/d/1H4R6yLL7som1lglyXWZ04RvTp_RvRFCCBn6sqv-82ps/edit#)
 
 << [repl](#) >>
@@ -22,16 +22,18 @@
 
 ## User Interface Design *(Front End Specialist)*
 
+The picture of the GUI is in the assets folder. "assets/GUI.png"
 * << A wireframe or drawing of the user interface concept along with a short description of the interface. You should have one for each screen in your program. >>
     * For example, if your program has a start screen, game screen, and game over screen, you should include a wireframe / screenshot / drawing of each one and a short description of the components
 * << You should also have a screenshot of each screen for your final GUI >>
+* 
 
 ***        
 
 ## Program Design *(Backend Specialist)*
 
 * Non-Standard libraries
-    * << You should have a list of any additional libraries or modules used (pygame, request) beyond non-standard python. >>
+    * pygame
     * For each additional module you should include
         * url for the module documentation
         * a short description of the module
@@ -64,13 +66,13 @@ The Project is broken down into the following file structure:
 
 << Worked as integration specialist by... >>
 
-### Front End Specialist - << name >>
+### Front End Specialist - Erin Zhao
 
-<< Front-end lead conducted significant research on... >>
+We designed a GUI layout for our app. We also designed sprite icons for things like buttons. We also created a calendar layout for the monthly and weekly calendars, as well as the general layout of the todo section and the calendars.
 
-### Back End Specialist - << name >>
+### Back End Specialist - Rachel Todd
 
-<< The back end specialist... >>
+We have created files for the different components of our project. These components include a calendar, notes, and button, layout. 
 
 ## Testing *(Software Lead)*
 
