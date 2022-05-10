@@ -11,6 +11,7 @@ class Button(pygame.sprite.Sprite):
     #self.input = i
     #self.leftSprite = left_img
     #self.rightSprite = right_img
+
   def display(self, input):
     """
     displays what the user has inputted into the note
