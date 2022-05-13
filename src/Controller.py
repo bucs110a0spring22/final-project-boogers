@@ -9,7 +9,7 @@ from src import Button
 
 class Controller:
   
-  def __init__(self, width=800, height=600):
+  def __init__(self, width=800, height=625):
     '''initializes variables, objects, screen'''
     pygame.init()
     #pygame.display.init()
@@ -17,13 +17,11 @@ class Controller:
     self.width = width
     self.height = height
     self.screen = pygame.display.set_mode((self.width, self.height))
-
     self.background = pygame.Surface(self.screen.get_size()).convert()
-    #self.screen = pygame.Surface(self.screen.get_size()).convert()
     self.screen.fill((170,170,255))
     pygame.display.flip()
-
-    self.month = 0
+    #self.
+    self.month = 3
     self.calendarCont = Calendar.Calendar(self.screen)
     self.calendarCont.createGrid(self.screen)
     self.calendarCont.setMonth(self.screen, self.month)
@@ -31,6 +29,8 @@ class Controller:
     #self.calendarCont.makeCalendar(self.screen, 1, {"days":31})
     
     pygame.font.init()
+    self.todoNote = Notes.Notes()
+
     
     self.buttons = pygame.sprite.Group()
     self.buttons.add(Button.Button(550, 0, "assets/settings_gear.png","small"))
@@ -62,24 +62,50 @@ class Controller:
         if event.type == pygame.MOUSEBUTTONDOWN:
           if event.button == 1:
             if (mouse_xCor <= 50) and (mouse_yCor <= 50):
-              print("left button pressed!")
-              self.calendarCont.setMonth(self.screen, self.month + 1)
-              self.month += 1
-              
+              #print("left button pressed!")
+              self.month -= 1
+              if self.month >= 0:
+                self.calendarCont.setMonth(self.screen, self.month)
+                #print(str(self.month))
+              elif self.month < 0:
+                self.month = 11
+                self.calendarCont.setMonth(self.screen, self.month)
+                #print(str(self.month))
+              else:
+                self.month = 0
+                #print(str(self.month))
             elif (mouse_xCor>=55 and mouse_xCor<=105) and (mouse_yCor <= 50):
-              print("right button pressed!")
+              #print("right button pressed!")
+              self.month += 1
+              if self.month<=10:
+                self.calendarCont.setMonth(self.screen, self.month)
+                #print(str(self.month))
+              if self.month > 11:
+                self.month = 0
+                self.calendarCont.setMonth(self.screen, self.month)
+                #print(str(self.month))
+              else:
+                self.month - 0
+                #print(str(self.month))
             elif (mouse_xCor >=550 and mouse_xCor <= 600) and (mouse_yCor <= 50):
               print("settings button pressed!")
             elif (mouse_xCor >= 225 and mouse_xCor <= 325) and (mouse_yCor <= 50):
               print("monthly button pressed!")
+              #self.week = -1
             elif (mouse_xCor >= 330 and mouse_xCor <= 430) and (mouse_yCor <= 50):
+              
+             # self.week = 
+
+
+
+              
               print("weekly button pressed!")
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_BACKSPACE:
             self.user_txt = self.notesCont.deleteText(self.user_txt)
-            self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)
+            self.user_txt = self.notesCont.message_display(self.screen, "white", [0,0], True, self.user_txt) #self.notesCont.drawText(self.screen, self.user_txt)
           else: 
-            self.user_txt = self.notesCont.updateText(self.user_txt,event.unicode)
+            self.user_txt = self.notesCont.message_display(self.screen, "white", [0,0], True, self.user_txt) #self.notesCont.updateText(self.user_txt,event.unicode)
             self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)
           
       #self.buttons.update()

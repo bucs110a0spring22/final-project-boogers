@@ -5,6 +5,12 @@ pygame.init()
 class Calendar:
   def __init__(self, surface):
     self.screen = surface
+
+    self.month = False
+    self.week = False
+
+
+    
     self.monthList = []
     #start day refers to the day of the week the month starts on. 1 being monday, 7 being sunday
     may22 =	{"days": 31, "title": "May 2022", "start day": 7}
@@ -16,9 +22,9 @@ class Calendar:
     november22 =	{"days": 30, "title": "November 2022", "start day": 2}
     december22 =	{"days": 31, "title": "Decmber 2022", "start day": 4}
     january23 =	{"days": 31, "title": "January 2023", "start day": 7}
-    february23 =	{"days": 31, "title": "February 2023", "start day": 3}
+    february23 =	{"days": 28, "title": "February 2023", "start day": 3}
     march23 =	{"days": 31, "title": "March 2023", "start day": 3}
-    april23 =	{"days": 31, "title": "April 2023", "start day": 6}
+    april23 =	{"days": 30, "title": "April 2023", "start day": 6}
     self.monthList.append(may22)
     self.monthList.append(june22)
     self.monthList.append(july22)
@@ -36,67 +42,16 @@ class Calendar:
     #changes the week displayed on the calendar
     month = False
     week = True
-
-    return self
-  def setMonth(self, surface, ctr=0):
-    #changes the month displayed ont he Calendar
-    #ctr = 0
-    currentMonth = self.monthList[ctr]
-    self.makeCalendar(surface,currentMonth["start day"], currentMonth)
-    font = pygame.font.Font(None, 100)
-    font = font.render(str(currentMonth["title"]), True, 'black')
-    surface.blit(font, (5,65))
-    
-    
-    
     return self
 
-  def makeCalendar(self, surface, startDay=1, month={"days": 31, "title": "January 2023"}):
-    #startDay is the day of the week that our month starts on
-    print("bruh")
-    print(month.get("days"))
-    """
-    month = self.monthList[9]
-    if(monthName == "february"):
-      month = self.monthList[10]
-    """
 
-    weekCount = 1
-    weekDay = startDay
-    for i in range(1, month["days"]):#month["days"]):
-      weekmod = (i+startDay-1)%7
-      if(weekmod == 1):
-        weekCount += 1
-        weekDay = 1
-      
-      #print("hell yeah")
-      font = pygame.font.Font(None, 50)
-      text = font.render(str(i), True, 'black')
-      textRect = text.get_rect()
-      textRect.center = ((weekDay*60), 70 + weekCount*85)
-      #print(40 + weekCount*70)
-      weekDay += 1
-      surface.blit(text, textRect)
-    
-  def changeCalendar(self):
-    
-    #if(pygame.sprite.collide_rect())    
-    #changes from weekly to monthly calendar and vice versa
-    return self
 
-  # def createGrid(self, surface):
-  #   #creates a grid out of notes so that person can write on the calendar directly
-  #   rect = (400,400)
-  #   pygame.gfxdraw.rectangle(surface,rect,(255,255,255))
-  #   """
-  #   calendarGrid = {}
-  #   if (weeklyOrMonthly == "WEEKLY"):
-  #     for i in range(7):
-  #       d["day{}".format(i+1)] = new Notes()
-  #   """
-  #   return self
+
+
+
+  
   def createGrid(self, surface):
-    offset = 60
+    offset = 90
     rect = (5,80+offset,450,350+86)
     self.grid = pygame.gfxdraw
     self.grid.rectangle(surface,rect,(0,0,0))
@@ -111,4 +66,76 @@ class Calendar:
     self.grid.hline(surface,5,454,338+offset,(0,0,0))
     self.grid.hline(surface,5,454,424+offset,(0,0,0))
     return None
+    
+  def dayNames(self, surface, start_date):
+    self.month = False
+    self.week = True
+    weekdayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    if start_date == 1:
+      newFont = pygame.font.Font(None, 40)
+      for i in range(0, len(weekdayNames)):
+        newFont = newFont.render(str(weekdayNames[i]), True, 'black')
+        rect = pygame.Rect(5,139,436,41)
+        pygame.draw.rect(surface,(170,170,255),rect)
+        if i == 0:
+          surface.blit(newFont, (5,172))
+        else:
+          surface.blit(newFont, (5,172+(i*86)))
+    
+  def setMonth(self, surface, ctr):
+    self.week = False
+    self.month = True
+    
+    currentMonth = self.monthList[ctr]
+    font = pygame.font.Font(None, 100)
+    font = font.render(str(currentMonth["title"]), True, 'black')
+    rect1 = pygame.Rect(5,64,600,74)
+    pygame.draw.rect(surface,(170,170,255),rect1)
+    surface.blit(font, (5,65))
+    rect2 = pygame.Rect(5,170,450,436)
+    pygame.draw.rect(surface,(170,170,255),rect2)
+    self.createGrid(surface)
+    self.makeCalendar(surface, ctr)
+   #self.dayNames(surface, self.monthList[ctr]["start day"])
+    
+
+  def makeCalendar(self, surface, month):
+    offset = 30
+    weekCount = 1
+    startDay = self.monthList[month]["start day"] 
+    startDay = 1
+    weekDay = startDay
+    for i in range(1, self.monthList[month]["days"]+1):
+      weekmod = (i+startDay-1)%7
+      if(weekmod == 1):
+        weekCount += 1
+        weekDay = 1
+      font = pygame.font.Font(None, 40)
+      text = font.render(str(i), True, 'black')
+      textRect = text.get_rect()
+      textRect.center = ((weekDay*60), 70 + weekCount*86)
+      #print(40 + weekCount*70)
+      weekDay += 1
+      if i == 1:
+        surface.blit(text, (7,142+offset))
+      elif i <= 7:
+        surface.blit(text, (7+(i-1)*65,142+offset))
+      elif i == 8:
+        surface.blit(text, (7,230+offset))
+      elif i <= 14:
+        surface.blit(text, (7+(i-8)*65,230+offset))
+      elif i == 15:
+        surface.blit(text, (7,313+offset))
+      elif i <= 21:
+        surface.blit(text, (7+(i-15)*65,313+offset))
+      elif i == 22:
+        surface.blit(text, (7,399+offset))
+      elif i <= 28 and i <= self.monthList[month]["days"]:
+        surface.blit(text, (7+(i-22)*65,399+offset))
+      elif i == 29 and i <= self.monthList[month]["days"]:
+        surface.blit(text, (7,485+offset))
+      elif i <= self.monthList[month]["days"]:
+        surface.blit(text, (7+(i-29)*65,485+offset))
+        
+
     

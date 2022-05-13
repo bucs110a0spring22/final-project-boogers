@@ -1,11 +1,12 @@
 import pygame
+import textwrap
 
 pygame.init()
 
 class Notes:
   def __init__(self):
     self.font = pygame.font.Font(None, 32)
-    self.rect = pygame.Rect(475, 120, 300, 300)
+    self.rect = pygame.Rect(475, 170, 300, 300)
     self.active_color = pygame.Color('blue')
     self.passive_color = pygame.Color('purple')
     self.active = False
@@ -22,19 +23,25 @@ class Notes:
     noteText += input
     return noteText
     
-  def deleteText(self, noteText):
+  def deleteText(self, noteText): 
     noteText = noteText[:-1]
     return noteText
 
   def drawText(self, surface, text, aa=False, bkg=None):
+    #xy = xy[:]
+    
+    """
+    
     rect = self.rect
     y = rect.top
+    x = rect.left
     lineSpacing = -2
     color = 'white'
 
     # get the height of the font
     fontHeight = self.font.size("Tg")[1]
-
+    
+    
     while text:
         i = 1
 
@@ -50,6 +57,11 @@ class Notes:
         # if we've wrapped the text, then adjust the wrap to the last word      
         if i < len(text): 
             i = text.rfind(" ", 0, i) + 1
+            lineSpacing += 50
+            x = rect.left
+
+        if 
+      
 
         # render the line and blit it to the surface
         if bkg:
@@ -67,3 +79,17 @@ class Notes:
         #text = text[i:]
 
     return text
+    """
+
+def wrap_text(message, wraplimit):
+    return textwrap.fill(message, wraplimit)
+
+def message_display(self, surface, color, xy, wrap, message=" "):
+    xy = xy[:] # so we won't modify the original values
+    font_object = pygame.font.Font()
+    message = wrap_text(message)
+    for part in message.split('\n'):
+         rendered_text = font_object.render(part, True, (color))
+         surface.blit(rendered_text,(xy))
+         xy[1] += [15, 148, 10]
+         pygame.display.update()
