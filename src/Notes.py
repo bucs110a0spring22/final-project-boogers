@@ -1,42 +1,69 @@
-  
 import pygame
 
 pygame.init()
 
 class Notes:
-  def __init__(self, x, y, h, w, i, f):
-    self.pos = (x, y)
-    self.rect = (h, w)
-    self.input = i
-    self.font = pygame.font.Font(f, 32)
-    #self.screen = new Screen()
-    self.color = "white"
-    pygame.draw.rect(screen, color, rect)
-    text_surface = font.render(user_text, True, (255, 255, 255))
-    rect.w = max(100, text_surface.get_width()+10)
-
-  clock = pygame.time.Clock()
-  
-  user_text = ''
-  pygame.display.flip()
-
-  def display(self, input):
-    """
-    displays what the user has inputted into the note
-    """
-
-    while True:
-      for event in pygame.event.get():
-        if event.key == pygame.K_BACKSPACE:
-          user_text = user_text[:-1]
-          else:
-            user_text += event.unicode
-
-  
-
-
-
-
+  def __init__(self):
+    self.font = pygame.font.Font(None, 32)
+    self.rect = pygame.Rect(475, 120, 300, 300)
+    self.active_color = pygame.Color('blue')
+    self.passive_color = pygame.Color('purple')
+    self.active = False
+    if self.active == False:
+      self.color = self.passive_color
+    else:
+      self.color = self.active_color
     
-    return self
-  
+  def txtBox(self, screen):
+    pygame.draw.rect(screen,self.color,self.rect)
+
+
+  def updateText(self, noteText, input):
+    noteText += input
+    return noteText
+    
+  def deleteText(self, noteText):
+    noteText = noteText[:-1]
+    return noteText
+
+  def drawText(self, surface, text, aa=False, bkg=None):
+    rect = self.rect
+    y = rect.top
+    lineSpacing = -2
+    color = 'white'
+
+    # get the height of the font
+    fontHeight = self.font.size("Tg")[1]
+
+    while text:
+        i = 1
+
+        #determine if the row of text will be outside our area
+        if y + fontHeight > rect.bottom:
+          #print(str(rect.bottom))
+          break
+
+        # determine maximum width of line
+        while self.font.size(text[:i])[0] < rect.width and i < len(text):
+            i += 1
+
+        # if we've wrapped the text, then adjust the wrap to the last word      
+        if i < len(text): 
+            i = text.rfind(" ", 0, i) + 1
+
+        # render the line and blit it to the surface
+        if bkg:
+            self.txtBox(surface)
+            image = self.font.render(text[:i], 1, color, bkg)
+            image.set_colorkey(bkg)
+        else:
+            self.txtBox(surface)
+            image = self.font.render(text[:i], aa, color)
+
+        surface.blit(image, (rect.x, rect.y))
+        y += fontHeight + lineSpacing
+
+        # remove the text we just blitted
+        #text = text[i:]
+
+    return text
