@@ -11,9 +11,17 @@
     "src/Controller.py": [
       {
         "id": "fbd6f523-dc72-4b80-87e5-fad21606ac43",
-        "line": 39,
-        "version": 6185,
-        "index": 1308
+        "line": 23,
+        "version": 6262,
+        "index": 588
+      }
+    ],
+    "src/Notes.py": [
+      {
+        "id": "620ac745-497f-4699-a737-27292aa0b65a",
+        "line": 77,
+        "version": 4155,
+        "index": 1893
       }
     ]
   }
