@@ -7,7 +7,6 @@ class Calendar:
     self.screen = surface
 
     self.month = False
-    #self.week = False
 
 
     
@@ -78,7 +77,6 @@ class Calendar:
           surface.blit(newFont, (5,172+(i*86)))
     
   def setMonth(self, surface, ctr):
-   # self.week = False
     self.month = True
     
     currentMonth = self.monthList[ctr]
@@ -91,7 +89,6 @@ class Calendar:
     pygame.draw.rect(surface,(170,170,255),rect2)
     self.createGrid(surface)
     self.makeCalendar(surface, ctr)
-   #self.dayNames(surface, self.monthList[ctr]["start day"])
     
 
   def makeCalendar(self, surface, month):
@@ -109,7 +106,7 @@ class Calendar:
       text = font.render(str(i), True, 'black')
       textRect = text.get_rect()
       textRect.center = ((weekDay*60), 70 + weekCount*86)
-      #print(40 + weekCount*70)
+
       weekDay += 1
       if i == 1:
         surface.blit(text, (7,142+offset))

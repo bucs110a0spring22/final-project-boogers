@@ -17,23 +17,4 @@ class Button(pygame.sprite.Sprite):
       self.rect.y = y
       self.image = pygame.transform.scale(self.image,(100,50))
     
-    #self.input = i
-    #self.leftSprite = left_img
-    #self.rightSprite = right_imgt
-
-  def display(self, input):
     
-    """
-    displays what the user has inputted into the note
-    """
-    return self
-  def switch(self, calendar, screen):
-    """
-    switches between calendar types if it returns true or false
-    """
-    #if (weekly) == True:
-    #    pass
-    #elif (monthly) == True:
-    #    pass
-    #return self
-  

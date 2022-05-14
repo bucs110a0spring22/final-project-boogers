@@ -51,14 +51,10 @@ class Notes:
     while text:
         self.char = 1
 
-        #determine if the row of text will be outside our area
         if y + fontHeight > rect.bottom:
-          #print(str(rect.bottom))
           break
 
-        # determine maximum width of line"""- self.linecountj*294
         while (self.font.size(text[:self.char])[0] < rect.width and self.char < len(text)):
-            #print(self.font.size(text[:i])[0] - j*294)  
             x += 1
             self.char += 1
             print("i{}".format(self.char))
@@ -66,12 +62,8 @@ class Notes:
         
             
 
-        # if we've wrapped the text, then adjust the wrap to the last word 
-        #char = 0
         
         if self.char < len(text): 
-            #for char in range(len(text)):
-              #char +=1
             
             print("we are in i<len(text)")
             self.char = text.rfind(" ", 0, self.char) + 1
@@ -79,26 +71,10 @@ class Notes:
             x = rect.left
             self.char = 1
 
-            #self.inRect = False
             self.linecntr += 1
-            #print("j: {}".format(j))
-            #self.drawText(surface, text)
-        
-            #message = new font object
-            #font object.y + 10
-            #print("this is your char:", char)
-        #if i > len(text):
-           # self.inRect = False
-            #image2 = self.font.render(text[i:], aa, color)
-            #pass
             
-          #Hi, idk what im doing
-        
-        #limit = rect.width % char
-         
         
         image1 = self.font.render(text[:self.char], aa, color)
-        #print("TRUEEEEE")
         print(self.linecountj)
         surface.blit(image1, (rect.x, rect.y + self.linecountj*50))
         y += fontHeight + lineSpacing
@@ -109,14 +85,11 @@ class Notes:
         if (self.linecntr >= 1):
           break;
 
-        # remove the text we just blitted
-        #text = text[i:]
-    #print(text)
+        
     return text
     
 
   def wrap_text(self, message, wraplimit):
-    #textwrapp = textwrap.TextWrapper()
     return textwrap.wrap(message)
 
   def message_display(self, surface, color, xy, wrap, message=" "):

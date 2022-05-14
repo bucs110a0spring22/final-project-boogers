@@ -7,13 +7,4 @@ class Screen():
     self.rect = r
     self.image = i
     self.color = c
-  def setColor(self, color):
-    """
-    sets the color of the background of the screen
-    """
-    return self
-  def setImage(self, image):
-    """
-    sets the image of the background of the screen
-    """
-    return self
+  
