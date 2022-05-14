@@ -7,7 +7,7 @@ class Calendar:
     self.screen = surface
 
     self.month = False
-    self.week = False
+    #self.week = False
 
 
     
@@ -37,12 +37,7 @@ class Calendar:
     self.monthList.append(february23)
     self.monthList.append(march23)
     self.monthList.append(april23)
-    
-  def setWeek(self, input):
-    #changes the week displayed on the calendar
-    month = False
-    week = True
-    return self
+
 
 
 
@@ -83,7 +78,7 @@ class Calendar:
           surface.blit(newFont, (5,172+(i*86)))
     
   def setMonth(self, surface, ctr):
-    self.week = False
+   # self.week = False
     self.month = True
     
     currentMonth = self.monthList[ctr]

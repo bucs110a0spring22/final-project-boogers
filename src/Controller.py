@@ -35,11 +35,11 @@ class Controller:
 
     
     self.buttons = pygame.sprite.Group()
-    self.buttons.add(Button.Button(550, 0, "assets/settings_gear.png","small"))
+    #self.buttons.add(Button.Button(550, 0, "assets/settings_gear.png","small"))
     self.buttons.add(Button.Button(0, 0, "assets/left_arrow.png","small"))
     self.buttons.add(Button.Button(55, 0, "assets/right_arrow.png","small"))
-    self.buttons.add(Button.Button(217, 0, "assets/monthly.png","large"))
-    self.buttons.add(Button.Button(323, 0, "assets/weekly.png","large"))
+    #self.buttons.add(Button.Button(217, 0, "assets/monthly.png","large"))
+   # self.buttons.add(Button.Button(323, 0, "assets/weekly.png","large"))
     self.allSprites =  pygame.sprite.Group(tuple(self.buttons)) 
     self.notesCont = Notes.Notes()
     self.notesCont.txtBox(self.screen)
@@ -63,6 +63,7 @@ class Controller:
         mouse_yCor = pygame.mouse.get_pos()[1]
         if event.type == pygame.MOUSEBUTTONDOWN:
           if event.button == 1:
+          
             if (mouse_xCor <= 50) and (mouse_yCor <= 50):
               #print("left button pressed!")
               self.month -= 1
@@ -89,6 +90,7 @@ class Controller:
               else:
                 self.month - 0
                 #print(str(self.month))
+              '''
             elif (mouse_xCor >=550 and mouse_xCor <= 600) and (mouse_yCor <= 50):
               print("settings button pressed!")
             elif (mouse_xCor >= 225 and mouse_xCor <= 325) and (mouse_yCor <= 50):
@@ -97,11 +99,13 @@ class Controller:
             elif (mouse_xCor >= 330 and mouse_xCor <= 430) and (mouse_yCor <= 50):
               
              # self.week = 
+              
 
 
 
               
               print("weekly button pressed!")
+              '''
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_BACKSPACE:
             self.user_txt = self.notesCont.deleteText(self.user_txt)
