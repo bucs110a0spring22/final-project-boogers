@@ -17,6 +17,7 @@
 ## Project Description *(Software Lead)*
 
 << Give an overview of your project >>
+It is a calendar that ranges from May 2022 to April 2023 and has a somewhat working notes function to go along with it
 
 ***    
 
@@ -62,9 +63,13 @@ The Project is broken down into the following file structure:
 
    * You must outline the team member roles and who was responsible for each class/method, both individual and collaborative.
 
-### Software Lead - << name >>
+### Software Lead - John Dambra
 
-<< Worked as integration specialist by... >>
+I made all of the assets into transparent pngs to be used fluidly on a background as buttons to scroll through the months on the calendar. Created a buttons sprite class that created the sprites in pygame, re-sized each button accordingly and positioned them in the proper spot on the window.
+
+Created a calendar class that managed the creation of the calendar grid, clearing and re-creating the calendar when changing months to avoid overlapping of text
+
+Attempted to create a notes class to create a dynamic text box next to the calendar for note taking purposes. Unfortunately, could not figure out how to get text wrapping within the text box to make it function properly. I was also unable to create dictionaries to load and saves the notes to each month respectively.
 
 ### Front End Specialist - Erin Zhao
 

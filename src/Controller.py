@@ -12,7 +12,6 @@ class Controller:
   def __init__(self, width=800, height=625):
     '''initializes variables, objects, screen'''
     pygame.init()
-    #pygame.display.init()
     self.i = 1
     self.j = 0
     self.user_txt = ''
@@ -80,10 +79,10 @@ class Controller:
             elif (mouse_xCor>=55 and mouse_xCor<=105) and (mouse_yCor <= 50):
               #print("right button pressed!")
               self.month += 1
-              if self.month<=10:
+              if self.month<=11:
                 self.calendarCont.setMonth(self.screen, self.month)
                 #print(str(self.month))
-              if self.month > 11:
+              if self.month >= 12:
                 self.month = 0
                 self.calendarCont.setMonth(self.screen, self.month)
                 #print(str(self.month))

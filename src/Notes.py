@@ -32,6 +32,7 @@ class Notes:
     
   def deleteText(self, noteText): 
     noteText = noteText[:-1]
+    
     return noteText
 
   def drawText(self, surface, text, aa=False):
@@ -64,15 +65,7 @@ class Notes:
             print("len{}".format(len(text)))
         
             
-        
-        """
-        if self.font.size(text[:i])[0] > rect.width:
-          i = text.rfind(" ", 0, i) + 1
-            lineSpacing += 50
-            x = rect.left
-            i = 1
-            j += 1
-        """
+
         # if we've wrapped the text, then adjust the wrap to the last word 
         #char = 0
         
@@ -115,23 +108,6 @@ class Notes:
           self.j += 1
         if (self.linecntr >= 1):
           break;
-
-        """
-        # render the line and blit it to the surface  
-        self.txtBox(surface)
-        if self.inRect == True:
-          image1 = self.font.render(text[:i], aa, color)
-          #print("TRUEEEEE")
-          surface.blit(image1, (rect.x, rect.y + j*50))
-          y += fontHeight + lineSpacing
-          
-        if self.inRect == False:
-          print("FALSEEEE")
-          image2 = self.font.render(text[i:], aa, color)
-          print("HEY THIA IS", text[:i])
-          surface.blit(image2, (rect.x, rect.y + 2*50))
-        #print(i)
-         """ 
 
         # remove the text we just blitted
         #text = text[i:]
