@@ -6,8 +6,8 @@ pygame.init()
 class Notes:
   def __init__(self):
     self.linecntr = 0
-    self.i = 1
-    self.j = 0
+    self.char = 1
+    self.linecountj = 0
     self.font = pygame.font.Font(None, 32)
     self.rect = pygame.Rect(475, 170, 300, 300)
     self.active_color = pygame.Color('blue')
@@ -49,19 +49,19 @@ class Notes:
     
     
     while text:
-        self.i = 1
+        self.char = 1
 
         #determine if the row of text will be outside our area
         if y + fontHeight > rect.bottom:
           #print(str(rect.bottom))
           break
 
-        # determine maximum width of line"""- self.j*294
-        while (self.font.size(text[:self.i])[0] < rect.width and self.i < len(text)):
+        # determine maximum width of line"""- self.linecountj*294
+        while (self.font.size(text[:self.char])[0] < rect.width and self.char < len(text)):
             #print(self.font.size(text[:i])[0] - j*294)  
             x += 1
-            self.i += 1
-            print("i{}".format(self.i))
+            self.char += 1
+            print("i{}".format(self.char))
             print("len{}".format(len(text)))
         
             
@@ -69,15 +69,15 @@ class Notes:
         # if we've wrapped the text, then adjust the wrap to the last word 
         #char = 0
         
-        if self.i < len(text): 
+        if self.char < len(text): 
             #for char in range(len(text)):
               #char +=1
             
             print("we are in i<len(text)")
-            self.i = text.rfind(" ", 0, self.i) + 1
+            self.char = text.rfind(" ", 0, self.char) + 1
             lineSpacing += 50
             x = rect.left
-            self.i = 1
+            self.char = 1
 
             #self.inRect = False
             self.linecntr += 1
@@ -97,15 +97,15 @@ class Notes:
         #limit = rect.width % char
          
         
-        image1 = self.font.render(text[:self.i], aa, color)
+        image1 = self.font.render(text[:self.char], aa, color)
         #print("TRUEEEEE")
-        print(self.j)
-        surface.blit(image1, (rect.x, rect.y + self.j*50))
+        print(self.linecountj)
+        surface.blit(image1, (rect.x, rect.y + self.linecountj*50))
         y += fontHeight + lineSpacing
 
         
-        if (self.i< len(text)):
-          self.j += 1
+        if (self.char< len(text)):
+          self.linecountj += 1
         if (self.linecntr >= 1):
           break;
 
