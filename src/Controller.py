@@ -13,6 +13,8 @@ class Controller:
     '''initializes variables, objects, screen'''
     pygame.init()
     #pygame.display.init()
+    self.i = 1
+    self.j = 0
     self.user_txt = ''
     self.width = width
     self.height = height
@@ -105,8 +107,20 @@ class Controller:
             self.user_txt = self.notesCont.deleteText(self.user_txt)
             self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)#self.notesCont.message_display(self.screen, "white", [0,0], True, self.user_txt) #self.notesCont.drawText(self.screen, self.user_txt)
           else: 
-            self.user_txt = self.notesCont.updateText(self.user_txt,event.unicode)
-            self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)#self.notesCont.message_display(self.screen, "white", [0,0], True, self.user_txt) #self.notesCont.drawText(self.screen, self.user_txt)
+            if(self.notesCont.linecntr < self.i):
+              self.user_txt = self.notesCont.updateText(self.user_txt,event.unicode)
+              
+              self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)
+              #self.j += 1
+              print("lincntr{}".format(self.notesCont.linecntr))
+            else:
+              print("this has hit the else")
+              print(self.user_txt[32:])
+              self.i += 1
+              self.user_txt = self.notesCont.updateText(self.user_txt[32*self.notesCont.linecntr:],event.unicode)
+              self.user_txt = self.notesCont.drawText(self.screen, self.user_txt)
+              
+              #self.notesCont.message_display(self.screen, "white", [0,0], True, self.user_txt) #self.notesCont.drawText(self.screen, self.user_txt)
           
       #self.buttons.update()
       self.screen.blit(self.screen, (0, 0))

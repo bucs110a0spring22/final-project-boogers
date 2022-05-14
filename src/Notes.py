@@ -5,6 +5,9 @@ pygame.init()
 
 class Notes:
   def __init__(self):
+    self.linecntr = 0
+    self.i = 1
+    self.j = 0
     self.font = pygame.font.Font(None, 32)
     self.rect = pygame.Rect(475, 170, 300, 300)
     self.active_color = pygame.Color('blue')
@@ -14,6 +17,10 @@ class Notes:
       self.color = self.passive_color
     else:
       self.color = self.active_color
+
+    self.inRect = True
+
+
     
   def txtBox(self, screen):
     pygame.draw.rect(screen,self.color,self.rect)
@@ -28,7 +35,6 @@ class Notes:
     return noteText
 
   def drawText(self, surface, text, aa=False):
-    #xy = xy[:]
     
     rect = self.rect
     y = rect.top
@@ -38,22 +44,24 @@ class Notes:
 
     # get the height of the font
     fontHeight = self.font.size("Tg")[1]
-    j = 0
+    #j = 0
     
     
     while text:
-        i = 1
+        self.i = 1
 
         #determine if the row of text will be outside our area
         if y + fontHeight > rect.bottom:
           #print(str(rect.bottom))
           break
 
-        # determine maximum width of line
-        while (self.font.size(text[:i])[0] - j*294 < rect.width and i < len(text)):
-            print(self.font.size(text[:i])[0] - j*294)  
+        # determine maximum width of line"""- self.j*294
+        while (self.font.size(text[:self.i])[0] < rect.width and self.i < len(text)):
+            #print(self.font.size(text[:i])[0] - j*294)  
             x += 1
-            i += 1
+            self.i += 1
+            print("i{}".format(self.i))
+            print("len{}".format(len(text)))
         
             
         
@@ -65,29 +73,65 @@ class Notes:
             i = 1
             j += 1
         """
-        # if we've wrapped the text, then adjust the wrap to the last word      
-        if i < len(text): 
+        # if we've wrapped the text, then adjust the wrap to the last word 
+        #char = 0
+        
+        if self.i < len(text): 
+            #for char in range(len(text)):
+              #char +=1
+            
             print("we are in i<len(text)")
-            i = text.rfind(" ", 0, i) + 1
+            self.i = text.rfind(" ", 0, self.i) + 1
             lineSpacing += 50
             x = rect.left
-            i = 1
-            j += 1
-            print("j: {}".format(j))
+            self.i = 1
+
+            #self.inRect = False
+            self.linecntr += 1
+            #print("j: {}".format(j))
             #self.drawText(surface, text)
-        else:
+        
             #message = new font object
             #font object.y + 10
-            #
-          
-      
-
-        # render the line and blit it to the surface      
-        self.txtBox(surface)
-        image = self.font.render(text[:i], aa, color)
-
-        surface.blit(image, (rect.x, rect.y + j*50))
+            #print("this is your char:", char)
+        #if i > len(text):
+           # self.inRect = False
+            #image2 = self.font.render(text[i:], aa, color)
+            #pass
+            
+          #Hi, idk what im doing
+        
+        #limit = rect.width % char
+         
+        
+        image1 = self.font.render(text[:self.i], aa, color)
+        #print("TRUEEEEE")
+        print(self.j)
+        surface.blit(image1, (rect.x, rect.y + self.j*50))
         y += fontHeight + lineSpacing
+
+        
+        if (self.i< len(text)):
+          self.j += 1
+        if (self.linecntr >= 1):
+          break;
+
+        """
+        # render the line and blit it to the surface  
+        self.txtBox(surface)
+        if self.inRect == True:
+          image1 = self.font.render(text[:i], aa, color)
+          #print("TRUEEEEE")
+          surface.blit(image1, (rect.x, rect.y + j*50))
+          y += fontHeight + lineSpacing
+          
+        if self.inRect == False:
+          print("FALSEEEE")
+          image2 = self.font.render(text[i:], aa, color)
+          print("HEY THIA IS", text[:i])
+          surface.blit(image2, (rect.x, rect.y + 2*50))
+        #print(i)
+         """ 
 
         # remove the text we just blitted
         #text = text[i:]
