@@ -87,7 +87,7 @@ class Controller:
                 self.calendarCont.setMonth(self.screen, self.month)
                 #print(str(self.month))
               else:
-                self.month - 0
+                self.month = 0
                 #print(str(self.month))
               '''
             elif (mouse_xCor >=550 and mouse_xCor <= 600) and (mouse_yCor <= 50):

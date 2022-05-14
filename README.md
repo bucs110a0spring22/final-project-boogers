@@ -88,6 +88,9 @@ We have created files for the different components of our project. These compone
 
 | Step                  | Procedure     | Expected Results  | Actual Results |
 | ----------------------|:-------------:| -----------------:| -------------- |
-|  1  | Run Counter Program  | GUI window appears with count = 0  |          |
-|  2  | click count button  | display changes to count = 1 |                 |
-etc...
+|  1  | Run program  | GUI window appears using pygame and displays current month, text box, and left and right arrow buttons |          |
+|  2  | click left button  | calendar goes back 1 months (rolls over to other end if at an end) |                 |
+| 3 | click right button | calendar goes forward 1 month (rolls over to other end if at an end)| |
+| 4 | click text box | activates text box| |
+| 5 | push any key on keyboard except backspace| letter/symbol in text box| |
+ 6 | push backspace on keyboard | text box string deletes last written character | doesn't backspace |
